@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
-import { FullInput } from "./components/FullInput";
+// import { FullInput } from "./components/FullInput";
+import { Input } from "./components/Input";
+import { Button } from "./components/Button";
 
 function App() {
   let [message, setMessage] = useState([
@@ -11,6 +13,8 @@ function App() {
     { message: "message4" },
     { message: "message5" },
   ]);
+  let [title, setTitle] = useState("");
+  console.log(title);
   //создаем функцию, которая будет добавлять задачу в список
   const addMessage = (title: string) => {
     // console.log(title);
@@ -18,9 +22,16 @@ function App() {
     setMessage([newMessage, ...message]);
   };
 
+  const callBackButtonHandler = () => {
+    addMessage(title);
+    setTitle("");
+  };
+
   return (
     <div className="App">
-      <FullInput addMessage={addMessage} />
+      {/* <FullInput addMessage={addMessage} /> */}
+      <Input setTitle={setTitle} title={title} />
+      <Button name={"+"} callBack={callBackButtonHandler} />
       {/* <div>
         <input />
         <button>+</button>
